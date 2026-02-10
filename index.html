@@ -672,13 +672,17 @@
 
         <!-- FOOTER -->
         <div class="footer">
-            <p>❤️ 더치페이를 공평하게</p>
+            <p>❤️ 아줌마잘먹지? ❤️</p>
         </div>
     </div>
 
     <script>
         // ============ DATA MANAGEMENT ============
-        let participants = [];
+        let participants = [
+            { id: 1, name: '오리' },
+            { id: 2, name: '이유' },
+            { id: 3, name: '융도' }
+        ];
         let expenses = [];
 
         // Initialize from URL parameters
@@ -688,7 +692,7 @@
             if (data) {
                 try {
                     const parsed = JSON.parse(atob(data));
-                    participants = parsed.participants || [];
+                    participants = parsed.participants || participants;
                     expenses = parsed.expenses || [];
                     updateDisplay();
                 } catch (e) {
@@ -926,7 +930,7 @@
                 // User checkboxes
                 userCheckboxes.innerHTML = participants.map(p => `
                     <div class="checkbox-item">
-                        <input type="checkbox" id="user-${p.id}" value="${p.id}">
+                        <input type="checkbox" id="user-${p.id}" value="${p.id}" checked>
                         <label for="user-${p.id}">${p.name}</label>
                     </div>
                 `).join('');
